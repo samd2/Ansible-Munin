@@ -1,5 +1,7 @@
 ---
-sudo: required
+dist: bionic
+language: python
+services: docker
 
 # testing
 
@@ -22,11 +24,11 @@ env:
     playbook: test.yml
     pip: pip
     # centos8 Failed to connect to bus: No such file or directory
-    # - distro: centos8
-    # init: /usr/sbin/init
-    # run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    # playbook: test.yml
-    # pip: pip3
+  - distro: centos8
+    init: /usr/sbin/init
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    playbook: test.yml
+    pip: pip3
     # trusty is end-of-life. run_opts are different.
     # - distro: trusty
     # init: /sbin/init

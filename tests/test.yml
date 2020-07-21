@@ -24,6 +24,40 @@
     - name: gather facts
       setup:
 
+    - name: check syslog
+      shell: cat /var/log/anaconda/syslog | grep -i d-bus
+      register: testeroutput
+      changed_when: false
+      ignore_errors: true
+
+    - name: debugging 
+      debug:
+        var: testeroutput
+      changed_when: false
+      ignore_errors: true
+
+    - name: check syslog
+      shell: cat /var/log/anaconda/syslog
+      register: testeroutput
+      changed_when: false
+      ignore_errors: true
+
+    - name: debugging 
+      debug:
+        var: testeroutput
+      changed_when: false
+      ignore_errors: true
+
+    - name: check processes
+      command: ps -ef
+      register: testeroutput
+      changed_when: false
+
+    - name: debugging ps
+      debug:
+        var: testeroutput
+      changed_when: false
+
     - name: debug variables
       debug:
         msg: "ansible_all_ipv4_addresses is {{ ansible_all_ipv4_addresses }} and ansible_all_ipv6_addresses is {{ ansible_all_ipv6_addresses }}"
