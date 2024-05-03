@@ -100,3 +100,17 @@
     name: munin-node
     state: started
     enabled: true
+
+- name: Debug
+  ansible.builtin.shell: |
+    echo "systemctl status munin-node.service"
+    systemctl status munin-node.service
+    echo "journalctl -xeu munin-node.service"
+    journalctl -xeu munin-node.service
+  register: result
+  changed_when: false
+
+- name: Print return information from the previous task
+  ansible.builtin.debug:
+    var: result
+  changed_when: false
