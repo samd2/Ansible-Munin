@@ -100,7 +100,7 @@
     name: munin-node
     state: started
     enabled: true
-  ignore_errors: true
+  # failed_when: true
 
 - name: Debug
   ansible.builtin.shell: |
@@ -110,7 +110,7 @@
     journalctl -xeu munin-node.service
   register: result
   changed_when: false
-  ignore_errors: true
+  failed_when: false
 
 - name: Print return information from the previous task
   ansible.builtin.debug:
